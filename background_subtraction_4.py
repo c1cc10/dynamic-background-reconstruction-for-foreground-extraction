@@ -32,6 +32,7 @@ while cap.isOpened() :
     if frame_counter == 0:
         print("Here we go!")
         avg = gray.copy().astype("float")
+        frame_counter += 1
         continue
     cv2.accumulateWeighted(gray, avg, 0.03)
     diff = cv2.absdiff(avg.astype("uint8"), gray)
@@ -49,6 +50,7 @@ while cap.isOpened() :
     cv2.imshow('progressive bg',res)
     cv2.imshow('frame',frame)
     cv2.imshow('cv2.createBackgroundSubtractorMOG2',resmog2)
+    frame_counter += 1
     k = cv2.waitKey(30) & 0xff
     if k == 27:
         break
